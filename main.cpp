@@ -1,5 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <bgfx/bgfx.h>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -16,5 +18,8 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
+    bool init = bgfx::init();
+
+    qDebug() << "init bgfx" << init;
     return app.exec();
 }

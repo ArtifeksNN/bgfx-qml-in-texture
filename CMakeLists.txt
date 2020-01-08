@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.10)
 
 project(bgfx-qml-in-texture LANGUAGES CXX)
 
@@ -12,23 +12,34 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(
-    ${SDL2_INCLUDE_DIRS}
     ${CMAKE_SOURCE_DIR}/bgfx/include
     ${CMAKE_SOURCE_DIR}/bx/include
     ${CMAKE_SOURCE_DIR}/bimg/include
     )
-
-link_directories(${CMAKE_SOURCE_DIR}/bgfx/.build/linux64_gcc/bin)
+if (WIN32)
+    link_directories(${CMAKE_SOURCE_DIR}/bgfx/.build/win64_vs2017/bin)
+endif(WIN32)
+if (UNIX)
+    link_directories(${CMAKE_SOURCE_DIR}/bgfx/.build/linux64_gcc/bin)
+endif(UNIX)
 
 add_executable(bgfx-qml-in-texture
     main.cpp
     qml.qrc
-)
+    )
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
 target_compile_definitions(bgfx-qml-in-texture
-  PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(bgfx-qml-in-texture
-  PRIVATE Qt5::Core Qt5::Quick bgfxRelease bimgRelease bxRelease GL GLU X11 dl pthread rt)
+    PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+if (WIN32)
+    target_link_libraries(bgfx-qml-in-texture
+        PRIVATE Qt5::Core Qt5::Quick bgfxRelease bimgRelease bxRelease)
+endif(WIN32)
+if (UNIX)
+    target_link_libraries(bgfx-qml-in-texture
+        PRIVATE Qt5::Core Qt5::Quick bgfxRelease bimgRelease bxRelease GL GLU X11 dl pthread rt)
+endif(UNIX)
+
+
 
