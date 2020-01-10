@@ -16,9 +16,13 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/bx/include
     ${CMAKE_SOURCE_DIR}/bimg/include
     )
-if (WIN32)
+
+if (MINGW)
+    link_directories(${CMAKE_SOURCE_DIR}/bgfx/.build/win64_mingw-gcc/bin)
+endif(MINGW)
+if (MSVC)
     link_directories(${CMAKE_SOURCE_DIR}/bgfx/.build/win64_vs2017/bin)
-endif(WIN32)
+endif(MSVC)
 if (UNIX)
     link_directories(${CMAKE_SOURCE_DIR}/bgfx/.build/linux64_gcc/bin)
 endif(UNIX)
@@ -34,7 +38,7 @@ target_compile_definitions(bgfx-qml-in-texture
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 if (WIN32)
     target_link_libraries(bgfx-qml-in-texture
-        PRIVATE Qt5::Core Qt5::Quick bgfxRelease bimgRelease bxRelease)
+        PRIVATE Qt5::Core Qt5::Quick bgfxRelease bimgRelease bxRelease psapi)
 endif(WIN32)
 if (UNIX)
     target_link_libraries(bgfx-qml-in-texture
