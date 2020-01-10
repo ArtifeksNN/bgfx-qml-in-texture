@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <bgfx/bgfx.h>
 #include <QDebug>
+#include "bgfx_item.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +11,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+    qmlRegisterType<BgfxItem>("BgfxItemExample", 1, 0, "BgfxItem");
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

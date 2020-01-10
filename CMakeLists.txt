@@ -30,6 +30,12 @@ endif(UNIX)
 add_executable(bgfx-qml-in-texture
     main.cpp
     qml.qrc
+    bgfx_item.h
+    bgfx_item.cpp
+    render_thread.h
+    render_thread.cpp
+    texture_node.h
+    texture_node.cpp
     )
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
