@@ -2,6 +2,8 @@
 
 #include "render_thread.h"
 #include "texture_node.h"
+#include <bgfx/bgfx.h>
+
 
 BgfxItem::BgfxItem() : _renderThread(nullptr)
 {

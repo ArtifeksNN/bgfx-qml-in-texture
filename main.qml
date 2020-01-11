@@ -7,9 +7,16 @@ Window {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: "bgfx example"
 
     BgfxItem {
-        anchors.fill: parent
+        width: 300
+        height: 300
     }
+
+    Rectangle {
+        anchors.fill: parent
+        color: "green"
+    }
+
 }

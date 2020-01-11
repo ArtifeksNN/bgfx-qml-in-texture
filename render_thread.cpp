@@ -22,6 +22,7 @@ void RenderThread::renderNext()
         format.setAttachment(QOpenGLFramebufferObject::CombinedDepthStencil);
         _renderFbo = new QOpenGLFramebufferObject(_size, format);
         _displayFbo = new QOpenGLFramebufferObject(_size, format);
+
     }
 
     _renderFbo->bind();

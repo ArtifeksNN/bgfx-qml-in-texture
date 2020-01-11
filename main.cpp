@@ -1,8 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <bgfx/bgfx.h>
-#include <QDebug>
-#include "bgfx_item.h"
+
+#include "bgfx_item2.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,18 +11,15 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    qmlRegisterType<BgfxItem>("BgfxItemExample", 1, 0, "BgfxItem");
+    qmlRegisterType<BgfxItem2>("BgfxItemExample", 1, 0, "BgfxItem");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
+        &app, [url](QObject *obj, const QUrl &objUrl) {
+            if (!obj && url == objUrl)
+                QCoreApplication::exit(-1);
+        }, Qt::QueuedConnection);
     engine.load(url);
 
-    bool init = bgfx::init();
-
-    qDebug() << "init bgfx" << init;
     return app.exec();
 }

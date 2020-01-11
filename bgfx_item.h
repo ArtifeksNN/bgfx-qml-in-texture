@@ -16,7 +16,6 @@ public slots:
     void ready();
 
 protected:
-    // QQuickItem interface
     QSGNode *updatePaintNode(QSGNode *, UpdatePaintNodeData *);
 
 private:

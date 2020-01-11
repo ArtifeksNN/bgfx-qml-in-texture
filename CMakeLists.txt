@@ -32,6 +32,8 @@ add_executable(bgfx-qml-in-texture
     qml.qrc
     bgfx_item.h
     bgfx_item.cpp
+    bgfx_item2.h
+    bgfx_item2.cpp
     render_thread.h
     render_thread.cpp
     texture_node.h
