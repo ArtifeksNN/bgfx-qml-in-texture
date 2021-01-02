@@ -38,6 +38,8 @@ add_executable(bgfx-qml-in-texture
     render_thread.cpp
     texture_node.h
     texture_node.cpp
+    render_engine.h
+    render_engine.cpp
     )
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)

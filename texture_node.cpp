@@ -1,4 +1,5 @@
 #include "texture_node.h"
+#include <QSGTextureProvider>
 
 TextureNode::TextureNode(QQuickWindow *window)
     : _id(0)

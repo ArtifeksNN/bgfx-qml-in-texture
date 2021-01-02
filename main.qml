@@ -2,21 +2,21 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 
 import BgfxItemExample 1.0
+import BgfxItem 1.0
 
 Window {
     visible: true
-    width: 640
-    height: 480
+    width: 1600
+    height: 800
     title: "bgfx example"
-
-    BgfxItem {
-        width: 300
-        height: 300
-    }
 
     Rectangle {
         anchors.fill: parent
         color: "green"
     }
 
+    BgfxItem {
+        width: 300
+        height: 300
+    }
 }

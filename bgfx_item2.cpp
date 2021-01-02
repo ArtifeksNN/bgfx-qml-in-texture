@@ -36,24 +36,28 @@ void BgfxItem2::bgfxInit()
                        , 0
                        );
 
-    qDebug() << "bgfx init" << callback;
+    qDebug() << "bgfx init2" << callback;
 }
 
 void BgfxItem2::timerEvent(QTimerEvent *event)
 {
-    if (!_isBgfxInit) {
-        bgfxInit();
-        _isBgfxInit = true;
-    }
+    render.render();
+//    if (!_isBgfxInit) {
+//        bgfxInit();
+//        _isBgfxInit = true;
+//    }
 
-    bgfx::reset(WIDTH, HEIGHT, BGFX_RESET_VSYNC);
+//    bgfx::reset(WIDTH, HEIGHT, BGFX_RESET_VSYNC);
 
-    bgfx::setViewRect(0, 100, 100, uint16_t(200), uint16_t(200));
-    bgfx::setViewClear(0,
-                       BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH,
-                       0x443355FF, 1.0f, 0);
-    bgfx::touch(0);
-    bgfx::frame();
+//    bgfx::setViewRect(0, 100, 100, uint16_t(800), uint16_t(800));
+//    bgfx::setViewClear(0,
+//                       BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH,
+//                       0x443355FF, 1.0f, 0);
+//    bgfx::touch(0);
+//    bgfx::frame();
 
+//    bool isSave = window()->grabWindow().save("test.png");
+
+//    qDebug() << "save image" << isSave;
 //    bgfx::shutdown();
 }

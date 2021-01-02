@@ -4,6 +4,9 @@
 #include <QQuickItem>
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
+#include <QQuickWindow>
+
+#include "render_engine.h"
 
 class BgfxItem2 : public QQuickItem
 {
@@ -23,6 +26,9 @@ protected:
 
 private:
     bool _isBgfxInit;
+
+//    QQuickWindow render_window;
+    RenderEngine render;
 
 };
 
