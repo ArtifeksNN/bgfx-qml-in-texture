@@ -26,21 +26,21 @@ add_executable(bgfx-qml-in-texture
     ${SOURCES}
 )
 
-find_package(Qt5 COMPONENTS Core REQUIRED)
-find_package(Qt5 COMPONENTS Gui REQUIRED)
-find_package(Qt5 COMPONENTS Qml REQUIRED)
-find_package(Qt5 COMPONENTS Quick REQUIRED)
+find_package(Qt5 COMPONENTS Core)
+find_package(Qt5 COMPONENTS Gui)
+find_package(Qt5 COMPONENTS Qml)
+find_package(Qt5 COMPONENTS Quick)
 
-target_link_libraries(bgfx-qml-in-texture PUBLIC
-    Qt::Core
-    Qt::Gui
-    Qt::Qml
-    Qt::Quick
-    Qt::QuickPrivate
-    bgfx
-    bimg
-    example-common
-)
+#target_link_libraries(bgfx-qml-in-texture PUBLIC
+#    Qt::Core
+#    Qt::Gui
+#    Qt::Qml
+#    Qt::Quick
+#    Qt::QuickPrivate
+#    bgfx
+#    bimg
+#    example-common
+#)
 
 target_include_directories(bgfx-qml-in-texture
                             PUBLIC
@@ -54,16 +54,16 @@ install(TARGETS bgfx-qml-in-texture
 )
 
 add_subdirectory(3rdParty)
-#target_compile_definitions(bgfx-qml-in-texture
-#    PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-#if (WIN32)
-#    target_link_libraries(bgfx-qml-in-texture
-#        PRIVATE Qt5::Core Qt5::Quick bgfxRelease bimgRelease bxRelease psapi)
-#endif(WIN32)
-#if (UNIX)
-#    target_link_libraries(bgfx-qml-in-texture
-#        PRIVATE Qt5::Core Qt5::Quick bgfxRelease bimgRelease bxRelease GL GLU X11 dl pthread rt)
-#endif(UNIX)
+target_compile_definitions(bgfx-qml-in-texture
+    PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+if (WIN32)
+    target_link_libraries(bgfx-qml-in-texture
+        PRIVATE Qt5::Core Qt5::Quick Qt5::Gui Qt5::Qml bgfx bimg bx psapi)
+endif(WIN32)
+if (UNIX)
+    target_link_libraries(bgfx-qml-in-texture
+        PRIVATE Qt5::Core Qt5::Quick Qt5::Gui Qt5::Qml bgfx bimg bx GL GLU X11 dl pthread rt)
+endif(UNIX)
 
 
 
