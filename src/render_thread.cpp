@@ -27,7 +27,7 @@ void RenderThread::bgfxInit()
     bgfx::renderFrame();
 
     bgfx::Init bgfxInit;
-    bgfxInit.type = bgfx::RendererType::Direct3D9;
+    bgfxInit.type = bgfx::RendererType::OpenGL;
     bgfxInit.resolution.width = _size.width();
     bgfxInit.resolution.height = _size.height();
     bgfxInit.resolution.reset = BGFX_RESET_VSYNC;
@@ -51,6 +51,7 @@ void RenderThread::renderNext()
     if (!bgfx::isValid(m_backBuffer)) {
         //        QOpenGLFramebufferObjectFormat format;
         //        format.setAttachment(QOpenGLFramebufferObject::CombinedDepthStencil);
+        qDebug() << "check valid buffer";
         bgfxInit();
         m_backBuffer = bgfx::createTexture2D(_size.width(), _size.height(), false, 1, bgfx::TextureFormat::RGBA8, BGFX_TEXTURE_RT, NULL);
         m_depthBuffer = bgfx::createTexture2D(_size.width(), _size.height(), false, 1, bgfx::TextureFormat::D24S8, BGFX_TEXTURE_RT, NULL);
@@ -77,10 +78,17 @@ void RenderThread::renderNext()
      bgfx::setViewFrameBuffer(m_viewId, m_offscreenFB);
 
      bgfx::setViewRect(m_viewId, 0, 0, _size.width(), _size.height());
+     bgfx::setViewClear(0,
+                        BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH,
+                        0x443355FF, 1.0f, 0);
 
-//     m_texture = (void*)bgfx::getInternal(m_backBuffer);
+     bgfx::touch(0);
+     bgfx::frame();
+     int textureID = bgfx::getInternal(m_backBuffer);
+//     qDebug() << "texture id" << textureID;
+     emit textureReady(textureID, _size);
 
-     QSGTexture* qsgtexture{nullptr};
+//     QSGTexture* qsgtexture{nullptr};
 
 //     bgfx::TextureHandle
 //     qsgtexture = (void*)bgfx::getTexture(m_backBuffer);
