@@ -4,7 +4,7 @@
 #include <QOpenGLFramebufferObject>
 #include <QOffscreenSurface>
 #include <QOpenGLContext>
-#include "render_engine.h"
+#include <bgfx/bgfx.h>
 
 class RenderThread : public QThread
 {

@@ -11,35 +11,15 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-#include_directories(
-#    ${CMAKE_SOURCE_DIR}/bgfx/include
-#    ${CMAKE_SOURCE_DIR}/bx/include
-#    ${CMAKE_SOURCE_DIR}/bimg/include
-#    )
-
-#if (MINGW)
-#    link_directories(${CMAKE_SOURCE_DIR}/bgfx/.build/win64_mingw-gcc/bin)
-#endif(MINGW)
-#if (MSVC)
-#    link_directories(${CMAKE_SOURCE_DIR}/bgfx/.build/win64_vs2017/bin)
-#endif(MSVC)
-#if (UNIX)
-#    link_directories(${CMAKE_SOURCE_DIR}/bgfx/.build/linux64_gcc/bin)
-#endif(UNIX)
-
 set(SOURCES
     main.cpp
     qml.qrc
     src/bgfx_item.h
     src/bgfx_item.cpp
-    src/bgfx_item2.h
-    src/bgfx_item2.cpp
     src/render_thread.h
     src/render_thread.cpp
     src/texture_node.h
     src/texture_node.cpp
-    src/render_engine.h
-    src/render_engine.cpp
 )
 
 add_executable(bgfx-qml-in-texture

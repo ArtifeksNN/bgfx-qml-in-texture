@@ -11,7 +11,6 @@ class BgfxItem : public QQuickItem
 public:
     BgfxItem();
 
-    void bgfxInit();
 signals:
 
 public slots:
@@ -22,5 +21,4 @@ protected:
 
 private:
     RenderThread* _renderThread;
-    bool _isBgfxInit;
 };

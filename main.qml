@@ -1,7 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 
-import BgfxItemExample 1.0
 import BgfxItem 1.0
 
 Window {
