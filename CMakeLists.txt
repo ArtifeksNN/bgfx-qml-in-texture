@@ -22,7 +22,7 @@ set(SOURCES
     src/texture_node.cpp
 )
 
-add_executable(bgfx-qml-in-texture
+add_executable(${PROJECT_NAME}
     ${SOURCES}
 )
 
@@ -42,26 +42,26 @@ find_package(Qt5 COMPONENTS Quick)
 #    example-common
 #)
 
-target_include_directories(bgfx-qml-in-texture
+target_include_directories(${PROJECT_NAME}
                             PUBLIC
                             ${CMAKE_SOURCE_DIR}/src
                             )
 
-install(TARGETS bgfx-qml-in-texture
+install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
         BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
         LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )
 
 add_subdirectory(3rdParty)
-target_compile_definitions(bgfx-qml-in-texture
+target_compile_definitions(${PROJECT_NAME}
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 if (WIN32)
-    target_link_libraries(bgfx-qml-in-texture
+    target_link_libraries(${PROJECT_NAME}
         PRIVATE Qt5::Core Qt5::Quick Qt5::Gui Qt5::Qml bgfx bimg bx psapi)
 endif(WIN32)
 if (UNIX)
-    target_link_libraries(bgfx-qml-in-texture
+    target_link_libraries(${PROJECT_NAME}
         PRIVATE Qt5::Core Qt5::Quick Qt5::Gui Qt5::Qml bgfx bimg bx GL GLU X11 dl pthread rt)
 endif(UNIX)
 
